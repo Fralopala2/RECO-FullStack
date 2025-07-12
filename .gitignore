@@ -1,0 +1,30 @@
+# Global ignores for Node.js projects (applies to both backend and frontend)
+node_modules/
+.env # Important: Never commit your environment variables (like database passwords)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.eslintcache
+.prettiercache
+
+# Logs
+*.log
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store # macOS specific
+Thumbs.db # Windows specific
+
+# Expo / React Native specific ignores (for the frontend folder)
+frontend-clase/.expo/
+frontend-clase/web-build/
+frontend-clase/ios/build/
+frontend-clase/android/build/
+frontend-clase/*.js.map
+frontend-clase/*.css.map
+
+# Backend specific ignores (though most are covered by global node_modules)
+backend-clase/build/
+backend-clase/dist/
