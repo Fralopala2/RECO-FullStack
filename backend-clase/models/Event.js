@@ -15,7 +15,7 @@ const EventSchema = new mongoose.Schema({
     },
     type: { // Tipo de evento: 'examen', 'tarea', 'entrega'
         type: String,
-        enum: ['examen', 'tarea', 'entrega'],
+        enum: ['examen', 'tarea', 'entrega','recordatorio'],
         required: true
     },
     dueDate: { // Fecha de entrega o realización
