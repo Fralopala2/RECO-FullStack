@@ -28,3 +28,4 @@ frontend-clase/*.css.map
 # Backend specific ignores (though most are covered by global node_modules)
 backend-clase/build/
 backend-clase/dist/
+.env
