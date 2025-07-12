@@ -1,7 +1,7 @@
 # RECO - Gestión de Eventos (Full-Stack)
 
 ## Descripción
-RECO es una aplicación full-stack para gestionar eventos, desarrollada como proyecto de 1º de DAW. Integra un backend robusto con Node.js y Express.js, una base de datos NoSQL en MongoDB Atlas y un frontend móvil en React Native. Demuestra habilidades en desarrollo de APIs RESTful, autenticación, despliegue en la nube y comunicación cliente-servidor.
+RECO es una aplicación full-stack para gestionar eventos, desarrollada como proyecto de aprendizaje. Integra un backend robusto con Node.js y Express.js, una base de datos NoSQL en MongoDB Atlas y un frontend móvil en React Native. Demuestra habilidades en desarrollo de APIs RESTful, autenticación, despliegue en la nube y comunicación cliente-servidor.
 
 ## Tecnologías
 
