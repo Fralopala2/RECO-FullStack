@@ -38,7 +38,6 @@ const EventListScreen = ({ navigation }) => {
         }
     }, [userToken, fetchEvents]);
 
-    // ¡NUEVO CÓDIGO! Este hook se ejecuta cada vez que la pantalla entra en foco
     useFocusEffect(
         useCallback(() => {
             if (userToken) {
@@ -57,13 +56,58 @@ const EventListScreen = ({ navigation }) => {
     }, [fetchEvents]);
 
     const renderEventItem = ({ item }) => (
-        <View style={styles.eventItem}>
-            <Text style={styles.eventTitle}>{item.title}</Text>
-            <Text style={styles.eventDescription}>{item.description}</Text>
-            <Text style={styles.eventType}>Tipo: {item.type}</Text>
-            <Text style={styles.eventDueDate}>Fecha: {new Date(item.dueDate).toLocaleDateString()}</Text>
+    <View style={styles.eventItem}>
+        <Text style={styles.eventTitle}>{item.title}</Text>
+        <Text style={styles.eventDescription}>{item.description}</Text>
+        <Text style={styles.eventType}>Tipo: {item.type}</Text>
+        <Text style={styles.eventDueDate}>Fecha: {new Date(item.dueDate).toLocaleDateString()}</Text>
+        <View style={styles.eventActions}> {/* Contenedor para los botones */}
+            <Button
+                title="Editar"
+                onPress={() => navigation.navigate('EventForm', { event: item })} // Pasa el evento para editar
+            />
+            <Button
+                title="Eliminar"
+                onPress={() => handleDeleteEvent(item._id)} // Llama a la nueva función
+                color="#dc3545" // Color rojo para eliminar
+            />
         </View>
+    </View>
     );
+
+    const handleDeleteEvent = async (eventId) => {
+    Alert.alert(
+        "Confirmar Eliminación",
+        "¿Estás seguro de que quieres eliminar este evento?",
+        [
+            {
+                text: "Cancelar",
+                style: "cancel"
+            },
+            {
+                text: "Eliminar",
+                onPress: async () => {
+                    try {
+                        api.defaults.headers.common['x-auth-token'] = userToken;
+                        await api.delete(`/api/events/${eventId}`);
+                        Alert.alert('Éxito', 'Evento eliminado correctamente.');
+                        fetchEvents(); // Recarga la lista después de eliminar
+                    } catch (error) {
+                        console.error('Error al eliminar evento:', error.response ? error.response.data : error.message);
+                        if (error.response && error.response.status === 401) {
+                            Alert.alert('Sesión Expirada', 'Por favor, inicia sesión de nuevo.');
+                            logout();
+                        } else {
+                            Alert.alert('Error', 'No se pudo eliminar el evento.');
+                        }
+                    }
+                },
+                style: "destructive"
+            }
+        ],
+        { cancelable: true }
+       );
+    };
 
     if (isLoading && !isRefreshing) { // Mostrar indicador de carga solo al inicio o si no es un refresh
         return (
@@ -156,6 +200,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 50,
         color: '#777',
+    },
+    eventActions: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end', // Alinea los botones a la derecha
+        marginTop: 10,
+    },
+    buttonSpacer: {
+        width: 10, // Ancho del espacio entre botones
     }
 });
 

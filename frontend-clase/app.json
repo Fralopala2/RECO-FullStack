@@ -1,17 +1,20 @@
 {
   "expo": {
-    "name": "frontend-clase",
-    "slug": "frontend-clase",
+    "name": "RECO-App",
+    "slug": "Reco-FullStack",
+    "owner": "pacoaldev",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -20,10 +23,16 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "package": "com.pacoaldev.RecoFullStack",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "48e264bd-5ce4-4ae1-ba68-7113ce02e570"
+      }
     }
   }
 }
