@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000; // El puerto de tu servidor
 
 // Middleware
 app.use(express.json()); // Para parsear el body de las peticiones JSON
-app.use(cors()); // Habilita CORS para permitir peticiones desde tu frontend
+app.use(cors({ origin: '*' })); // Habilita CORS para permitir peticiones desde tu frontend
 
 // Conexión a MongoDB
 const connectDB = async () => {
